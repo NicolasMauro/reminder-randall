@@ -1,0 +1,30 @@
+<% content_for :title, "Settings" %>
+<h1>Settings</h1>
+
+<%= form_with model: @user, url: account_path, method: :patch do |f| %>
+  <fieldset>
+    <legend>You</legend>
+    <p><%= f.label :name %><br><%= f.text_field :name %></p>
+    <p><%= f.label :email %><br><%= f.email_field :email %></p>
+    <p><%= f.label :phone, "Phone (E.164, e.g. +15551234567)" %><br><%= f.telephone_field :phone %></p>
+    <p><%= f.label :ics_url, "Calendar .ics feed URL" %><br><%= f.url_field :ics_url, size: 60 %></p>
+  </fieldset>
+
+  <%= f.fields_for :setting do |s| %>
+    <fieldset>
+      <legend>How Mack blasts you</legend>
+      <p>Channels, in escalation order — Mack stops the moment you ack:</p>
+      <% Setting::CHANNELS.each do |c| %>
+        <label><%= check_box_tag "user[setting_attributes][channels][]", c, s.object.channels.include?(c) %> <%= c %></label>
+      <% end %>
+      <%= hidden_field_tag "user[setting_attributes][channels][]", "" %>
+
+      <p><%= s.label :grace_minutes, "Blast if not joined after (min)" %> <%= s.number_field :grace_minutes, min: 0 %></p>
+      <p><%= s.label :escalate_after_seconds, "Wait between channels (sec)" %> <%= s.number_field :escalate_after_seconds, min: 15 %></p>
+      <p><%= s.label :lead_minutes, "Heads-up before start (min, blank = off)" %> <%= s.number_field :lead_minutes, min: 0 %></p>
+      <p><label><%= s.check_box :confirm_nudge %> Send a friendly "you joined right?" first, instead of a hard blast</label></p>
+    </fieldset>
+  <% end %>
+
+  <%= f.submit "Save" %>
+<% end %>

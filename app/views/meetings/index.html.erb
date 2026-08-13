@@ -1,0 +1,17 @@
+<% content_for :title, "Meetings" %>
+<h1>Upcoming</h1>
+
+<% if @meetings.empty? %>
+  <p>Nothing on the radar. Add your calendar's secret <code>.ics</code> URL in <%= link_to "Settings", edit_account_path %>.</p>
+<% else %>
+  <table>
+    <% @meetings.each do |m| %>
+      <tr>
+        <td><%= m.starts_at.strftime("%a %-l:%M %p") %></td>
+        <td><%= m.title %> <% if m.hosting? %><small>(you host)</small><% end %></td>
+        <td><%= link_to m.provider, m.join_url, target: "_blank", rel: "noopener" %></td>
+        <td><%= m.acknowledged? ? "✅ in" : (m.notified_at? ? "🥊 blasting" : "⏳ watching") %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
