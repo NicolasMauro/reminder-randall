@@ -12,8 +12,8 @@
 
   <%= f.fields_for :setting do |s| %>
     <fieldset>
-      <legend>How Mack blasts you</legend>
-      <p>Channels, in escalation order — Mack stops the moment you ack:</p>
+      <legend>How Randall blasts you</legend>
+      <p>Channels, in escalation order — Randall stops the moment you ack:</p>
       <% Setting::CHANNELS.each do |c| %>
         <label><%= check_box_tag "user[setting_attributes][channels][]", c, s.object.channels.include?(c) %> <%= c %></label>
       <% end %>

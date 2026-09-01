@@ -4,11 +4,11 @@ module Copy
   def text(meeting, mode = :blast)
     case mode
     when :lead
-      %(🥊 Mack: "#{meeting.title}" starts in #{meeting.setting.lead_minutes} min. #{meeting.join_url})
+      %(🥊 Randall: "#{meeting.title}" starts in #{meeting.setting.lead_minutes} min. #{meeting.join_url})
     when :confirm
-      %(🥊 Mack: you're in "#{meeting.title}", right? Reply IN if so, or tap #{ack_url(meeting)}.)
+      %(🥊 Randall: you're in "#{meeting.title}", right? Reply IN if so, or tap #{ack_url(meeting)}.)
     else
-      %(🥊 Mack: "#{meeting.title}" started #{meeting.minutes_late} min ago and you're not in. ) +
+      %(🥊 Randall: "#{meeting.title}" started #{meeting.minutes_late} min ago and you're not in. ) +
       %(Join: #{meeting.join_url} — reply IN or tap #{ack_url(meeting)} to stop.)
     end
   end

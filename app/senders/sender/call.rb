@@ -5,5 +5,5 @@ class Sender::Call < Sender::Base
   end
 
   private
-    def spoken = "Hey, it's Mack. Your meeting, #{@meeting.title}, started and you are not in it. Go join now."
+    def spoken = "Hey, it's Randall. Your meeting, #{@meeting.title}, started and you are not in it. Go join now."
 end

@@ -9,8 +9,8 @@
 #   end
 
 # One self-host user, seeded from ENV. Re-run safe.
-if User.none? && ENV["MACK_EMAIL"].present?
-  User.create!(name: ENV["MACK_NAME"], email: ENV["MACK_EMAIL"],
-               phone: ENV["MACK_PHONE"], ics_url: ENV["MACK_ICS_URL"])
-  puts "🥊 Created Mack user for #{ENV["MACK_EMAIL"]}"
+if User.none? && ENV["RANDALL_EMAIL"].present?
+  User.create!(name: ENV["RANDALL_NAME"], email: ENV["RANDALL_EMAIL"],
+               phone: ENV["RANDALL_PHONE"], ics_url: ENV["RANDALL_ICS_URL"])
+  puts "🥊 Created Randall user for #{ENV["RANDALL_EMAIL"]}"
 end
